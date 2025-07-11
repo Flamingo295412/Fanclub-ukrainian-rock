@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Фан-клуб українського року</title>
+<style>
+  /* Frutiger Aero стиль з теплими градієнтами */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    color: #3c1e1e;
+  }
+  header {
+    background: linear-gradient(90deg, #ff9a3c, #f26322);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    color: #fff;
+    text-shadow: 1px 1px 3px #6b2b02;
+  }
+  main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  .post-list {
+    list-style: none;
+    padding: 0;
+  }
+  .post-list li {
+    background: rgba(255 255 255 / 0.85);
+    margin-bottom: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 6px 10px rgba(255 165 0 / 0.4);
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .post-list li:hover {
+    background: rgba(255 255 255 / 1);
+  }
+  .post-list li h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #cc5500;
+  }
+  #post-detail {
+    background: rgba(255 255 255 / 0.95);
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 8px 18px rgba(255 140 0 / 0.5);
+    margin-bottom: 2rem;
+    display: none;
+  }
+  #post-detail h2 {
+    margin-top: 0;
+    color: #b34700;
+  }
+  #post-detail p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #5a2a00;
+  }
+  #close-detail {
+    display: inline-block;
+    margin-top: 1rem;
+    background: #f26322;
+    border: none;
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+    transition: background 0.3s ease;
+  }
+  #close-detail:hover {
+    background: #d7521a;
+  }
+  form {
+    background: rgba(255 255 255 / 0.9);
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 8px 18px rgba(255 140 0 / 0.5);
+    max-width: 900px;
+    margin: 0 auto 2rem;
+  }
+  form h3 {
+    margin-top: 0;
+    color: #b34700;
+  }
+  form label {
+    display: block;
+    margin: 1rem 0 0.3rem;
+    font-weight: 600;
+    color: #cc5500;
+  }
+  form input[type="text"],
+  form textarea {
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: 10px;
+    border: 1.5px solid #f26322;
+    font-size: 1rem;
+    resize: vertical;
+    font-family: inherit;
+  }
+  form button {
+    margin-top: 1rem;
+    background: #f26322;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(255 165 0 / 0.6);
+    transition: background 0.3s ease;
+  }
+  form button:hover {
+    background: #d7521a;
+  }
+  footer {
+    text-align: center;
+    padding: 1rem;
+    color: #622900;
+    font-size: 0.9rem;
+  }
+  /* Секція жанрів */
+  #genres {
+    max-width: 900px;
+    margin: 2rem auto;
+    background: rgba(255 255 255 / 0.9);
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 8px 18px rgba(255 140 0 / 0.5);
+  }
+  #genres h2 {
+    color: #b34700;
+    margin-top: 0;
+    text-align: center;
+  }
+  .genre-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .genre-list li {
+    margin-bottom: 1rem;
+  }
+  .genre-list strong {
+    color: #cc5500;
+  }
+  @media (max-width: 480px) {
+header h1 {
+      font-size: 2rem;
+    }
+    form, main, #genres {
+      padding: 0 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Фан-клуб українського року</h1>
+  <p>Океан Ельзи, Бумбокс, Тартак, метал, альтернативна музика і не тільки</p>
+</header>
+<main>
+  <ul id="posts" class="post-list">
+    <!-- Тут будуть пости -->
+  </ul>
+
+  <div id="post-detail">
+    <h2></h2>
+    <p></p>
+    <button id="close-detail">Закрити</button>
+  </div>
+
+  <form id="add-post-form">
+    <h3>Додати новий пост</h3>
+    <label for="title">Заголовок</label>
+    <input type="text" id="title" required minlength="3" maxlength="100" />
+    <label for="content">Текст поста</label>
+    <textarea id="content" rows="5" required minlength="10" maxlength="1000"></textarea>
+    <button type="submit">Опублікувати</button>
+  </form>
+
+  <section id="genres">
+    <h2>Музичні жанри</h2>
+    <ul class="genre-list">
+      <li><strong>Рок</strong> — класичний, альтернативний, інді-рок. Енергія гітар, драйв і потужний вокал.</li>
+      <li><strong>Метал</strong> — важкий метал, симфонічний, дез-метал. Глибокі гітарні рифи та емоційна інтенсивність.</li>
+      <li><strong>Поп-рок</strong> — м'який, комерційний рок із елементами поп-музики, легкий для сприйняття.</li>
+      <li><strong>Альтернатива</strong> — експериментальні напрямки, що виходять за межі класичного року.</li>
+      <li><strong>Хіп-хоп</strong> — український реп і хіп-хоп, потужні тексти та ритми.</li>
+      <li><strong>Фолк-рок</strong> — поєднання традиційної української музики з роковими елементами.</li>
+    </ul>
+  </section>
+</main>
+<footer>
+  &copy; 2025 Фан-клуб українського року
+</footer>
+
+<script>
+  // Масив постів (початкові)
+  let posts = [
+    {
+      title: "Огляд нового альбому ТНМК",
+      content: "Новий альбом 'Double Tap' вразив фанатів поєднанням хіп-хопу та року. Потужні гітарні рифи та соціальні тексти — те, за що ми любимо ТНМК."
+    },
+    {
+      title: "10 українських рок-гуртів, які варто послухати",
+      content: "Відновлюємо пам’ять про 'Димну Суміш', 'Тартак', 'Антитіла', 'Плач Єремії', 'СКАЙ' та інші легенди української сцени."
+    },
+    {
+      title: "Закордонні впливи на український метал",
+      content: "Український метал усе більше змішується зі скандинавським звучанням. Огляд гуртів '1914', 'Motanka' та 'Sectorial'."
+    }
+  ];
+
+  const postsListEl = document.getElementById('posts');
+  const postDetailEl = document.getElementById('post-detail');
+  const postDetailTitle = postDetailEl.querySelector('h2');
+  const postDetailContent = postDetailEl.querySelector('p');
+  const closeDetailBtn = document.getElementById('close-detail');
+  const addPostForm = document.getElementById('add-post-form');
+  const titleInput = document.getElementById('title');
+  const contentInput = document.getElementById('content');
+
+  // Функція відмалювати список постів
+  function renderPosts() {
+    postsListEl.innerHTML = '';
+    posts.forEach((post, index) => {
+      const li = document.createElement('li');
+      li.innerHTML = <h2>${post.title}</h2>;
+      li.addEventListener('click', () => showPostDetail(index));
+      postsListEl.appendChild(li);
+    });
+  }
+
+  // Показати деталі поста
+  function showPostDetail(index) {
+    postDetailTitle.textContent = posts[index].title;
+    postDetailContent.textContent = posts[index].content;
+    postDetailEl.style.display = 'block';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  // Закрити деталі
+  closeDetailBtn.addEventListener('click', () => {
+    postDetailEl.style.display = 'none';
+  });
+
+  // Обробник додавання нового поста
+  addPostForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const newTitle = titleInput.value.trim();
+    const newContent = contentInput.value.trim();
+    if(newTitle.length >= 3 && newContent.length >= 10) {
+      posts.unshift({title: newTitle, content: newContent});
+      renderPosts();
+      addPostForm.reset();
+      postDetailEl.style.display = 'none';
+      alert('Пост додано!');
+    } else {
+      alert('Будь ласка, заповніть усі поля коректно.');
+    }
+  });
+// Початковий рендер
+  renderPosts();
+</script>
+</body>
+</html>
+
